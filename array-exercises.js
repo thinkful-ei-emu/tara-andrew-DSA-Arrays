@@ -41,11 +41,40 @@ function maxSum(arr) {
 
   return max;
 }
+}
 
-console.log(URLify('tauhida parveen'));
+//[1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]
 
-console.log(filterArray([1, 2, 3, 4, 5, 6, 7, 8]));
+function merge(array1, array2) {
+  let newArray = [];
 
-let testArr = [50, -10, 5];
+  const lengths = array1.length + array2.length;
 
-console.log(testArr, maxSum(testArr));
+  for(let i = 0; i < lengths; i++) {
+    (array1[0] > array2[0]) ? newArray.push(array2.shift()) : newArray.push(array1.shift());
+  }
+
+  return newArray;
+}
+
+function unvowel(string) {
+  const forbidden = 'aeiou';
+  for (let i = 0; i < string.length; i++) {
+    if (forbidden.includes(string[i])) {
+      string = string.slice(0, i) + '' + string.slice(i + 1);
+    }
+  }
+  return string;
+}
+
+// console.log(URLify('tauhida parveen'));
+
+// console.log(filterArray([1, 2, 3, 4, 5, 6, 7, 8]));
+
+// let testArr = [50, -10, 5];
+
+// console.log(testArr, maxSum(testArr));
+
+// console.log(merge([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
+
+console.log(unvowel('Battle of the Vowels'));
