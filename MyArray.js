@@ -2,16 +2,18 @@ const Memory = require('./memory');
 
 const memory = new Memory();
 
-class myArray {
+class MyArray {
   constructor(capacity = 0) {
+    // console.log(capacity);
     this.length = 0;
     this._capacity = capacity >= 0 ? capacity : 0;
-    this.ptr = memory.allocate(this.length);
+    // console.log(this._capacity);
+    this.ptr = memory.allocate(this._capacity);
   }
 
   push(value) {
     if (this.length >= this._capacity) {
-      this._resize((this.length + 1) * myArray.SIZE_RATIO);
+      this._resize((this.length + 1) * MyArray.SIZE_RATIO);
     }
 
     memory.set(this.ptr + this.length, value);
@@ -19,7 +21,7 @@ class myArray {
   }
 
   get(index) {
-    if (index < this.ptr || index > this.ptr + this.length) {
+    if (index < 0 || index >= this.length) {
       throw new Error('Invalid index');
     }
     return memory.get(this.ptr + index);
@@ -44,11 +46,13 @@ class myArray {
 
   insert(index, value) {
     if (this.length >= this.capacity) {
-      this._resize((this.length + 1) * myArray.SIZE_RATIO);
+      this._resize((this.length + 1) * MyArray.SIZE_RATIO);
     }
 
-    memory.copy(index + 1, index, this.length - index);
-    memory.set(index, value);
+    console.log(value);
+
+    memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
+    memory.set(this.ptr + index, value);
 
     this.length++;
   }
@@ -62,7 +66,7 @@ class myArray {
         : `${this.get(i)} `;
     }
 
-    arrayString += ' ]';
+    arrayString += ']';
 
     return arrayString;
   }
@@ -83,6 +87,6 @@ class myArray {
 }
 
 
-myArray.SIZE_RATIO = 3;
+MyArray.SIZE_RATIO = 3;
 
-module.exports = myArray;
+module.exports = MyArray;

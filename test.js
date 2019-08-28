@@ -1,17 +1,20 @@
-const myArray = require('./myArray');
+const MyArray = require('./MyArray');
 
-const arr = new myArray(1);
-
+const arr = new MyArray();
 
 for (let i = 1; i <= 5; i++)
   arr.push(i);
 
+
+console.log(arr);
 console.log(arr.print());
 
-// console.log(arr.get(1));
-
-// console.log(arr.pop());
-// console.log(arr);
-
 arr.insert(2, 10);
+console.log(arr.print());
+
+while(arr.length > 0) arr.pop();
+
+arr.push('tauhida');
+
+console.log(arr);
 console.log(arr.print());
