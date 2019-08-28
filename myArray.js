@@ -10,7 +10,7 @@ class myArray {
   }
 
   push(value) {
-    if(this.length >= this._capacity) {
+    if (this.length >= this._capacity) {
       this._resize((this.length + 1) * myArray.SIZE_RATIO);
     }
 
@@ -26,14 +26,45 @@ class myArray {
   }
 
   pop() {
-    if (this.length  == 0){
+    if (this.length === 0) {
       throw new Error('Invalid index');
     }
-    let val = memory.get(this.ptr+this.length-1);
+    let val = memory.get(this.ptr + this.length - 1);
     this.length--;
 
     return val;
 
+  }
+
+  /**
+   * [1, 2, 3, 4, 5]
+   * insert(2, 10);
+   * []
+   */
+
+  insert(index, value) {
+    if (this.length >= this.capacity) {
+      this._resize((this.length + 1) * myArray.SIZE_RATIO);
+    }
+
+    memory.copy(index + 1, index, this.length - index);
+    memory.set(index, value);
+
+    this.length++;
+  }
+
+  print() {
+    let arrayString = '[ ';
+
+    for (let i = 0; i < this.length; i++) {
+      arrayString += i !== this.length - 1
+        ? `${this.get(i)}, `
+        : `${this.get(i)} `;
+    }
+
+    arrayString += ' ]';
+
+    return arrayString;
   }
 
   _resize(capacity) {
