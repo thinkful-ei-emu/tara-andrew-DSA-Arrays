@@ -11,10 +11,9 @@ console.log(arr.print());
 
 arr.insert(2, 10);
 console.log(arr.print());
+console.log(arr.print());
 
 while(arr.length > 0) arr.pop();
-
-arr.push('tauhida');
 
 console.log(arr);
 console.log(arr.print());

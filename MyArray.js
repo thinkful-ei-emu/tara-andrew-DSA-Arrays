@@ -27,6 +27,7 @@ class MyArray {
     return memory.get(this.ptr + index);
   }
 
+
   pop() {
     if (this.length === 0) {
       throw new Error('Invalid index');
@@ -49,12 +50,19 @@ class MyArray {
       this._resize((this.length + 1) * MyArray.SIZE_RATIO);
     }
 
-    console.log(value);
-
     memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
     memory.set(this.ptr + index, value);
 
     this.length++;
+  }
+
+  remove(index) {
+    if(index < 0 || index > this.length-1) {
+      throw new Error('Invalid index');
+    }
+    memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
+
+    this.length--;
   }
 
   print() {
