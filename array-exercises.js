@@ -67,6 +67,23 @@ function unvowel(string) {
   return string;
 }
 
+function rotationChecker(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+  for (let i = 0; i < str1.length; i++) {
+    if (str1 === str2) {
+      return true;
+    }
+    str1 = str1.slice(1) + str1.slice(0, 1);
+  }
+
+  return false;
+}
+
+console.log(rotationChecker('amazon', 'azonma'));
+console.log(rotationChecker('amazon', 'azonam'));
+
 // console.log(URLify('tauhida parveen'));
 
 // console.log(filterArray([1, 2, 3, 4, 5, 6, 7, 8]));
@@ -77,4 +94,4 @@ function unvowel(string) {
 
 // console.log(merge([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
 
-console.log(unvowel('Battle of the Vowels'));
+// console.log(unvowel('Battle of the Vowels'));
