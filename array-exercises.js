@@ -26,7 +26,7 @@ function maxSum(arr) {
   let max = arr[0] + arr[1];
 
   /**
-   * SUM of n-1 to 0 = n(n+1) / 2 = O(n^2)
+   * O(n^2)
    */
 
   /* n times */
@@ -37,10 +37,10 @@ function maxSum(arr) {
       sum += arr[j];
       if (sum > max) max = sum;
     }
-  
 
-  return max;
-}
+
+    return max;
+  }
 }
 
 //[1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]
@@ -50,7 +50,7 @@ function merge(array1, array2) {
 
   const lengths = array1.length + array2.length;
 
-  for(let i = 0; i < lengths; i++) {
+  for (let i = 0; i < lengths; i++) {
     (array1[0] > array2[0]) ? newArray.push(array2.shift()) : newArray.push(array1.shift());
   }
 
@@ -84,14 +84,78 @@ function rotationChecker(str1, str2) {
 console.log(rotationChecker('amazon', 'azonma'));
 console.log(rotationChecker('amazon', 'azonam'));
 
+function products(arr) {
+  let products = [];
+  for (let i = 0; i < arr.length; i++) {
+    let product = 1;
+    for (let j = 0; j < arr.length; j++) {
+      if (j !== i)
+        product *= arr[j];
+    }
+    products.push(product);
+  }
+
+  return products;
+}
+
+
+/**
+ * O(n^3)
+ */
+function array2d(arr) {
+  let result = [];
+
+  /* n */
+  for (let row of arr) {
+    result.push([...row]);
+  }
+
+  /**
+   * O(n^3)
+   */
+
+  /* n */
+  for (let i = 0; i < arr.length; i++) {
+    /* n */
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === 0) {
+        /* n */
+        for (let k = 0; k < result.length; k++) {
+          result[k][j] = 0;
+        }
+
+        /* n */
+        result[i].fill(0);
+      }
+    }
+  }
+
+  return result;
+}
+
+let testArr = [
+  [1, 0, 1, 1, 0],
+  [0, 1, 1, 1, 0],
+  [1, 1, 1, 1, 1],
+  [1, 0, 1, 1, 1],
+  [1, 1, 1, 1, 1]
+];
+
+
 // console.log(URLify('tauhida parveen'));
 
 // console.log(filterArray([1, 2, 3, 4, 5, 6, 7, 8]));
 
-// let testArr = [50, -10, 5];
 
 // console.log(testArr, maxSum(testArr));
 
 // console.log(merge([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
 
 // console.log(unvowel('Battle of the Vowels'));
+<<<<<<< HEAD
+=======
+
+// console.log(products(testArr));
+
+console.log(array2d(testArr));
+>>>>>>> 00ca8eb0ee326181fd5c256a2ad69de3953470f5
