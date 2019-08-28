@@ -26,7 +26,7 @@ function maxSum(arr) {
   let max = arr[0] + arr[1];
 
   /**
-   * SUM of n-1 to 0 = n(n+1) / 2 = O(n^2)
+   * O(n^2)
    */
 
   /* n times */

@@ -39,12 +39,6 @@ class MyArray {
 
   }
 
-  /**
-   * [1, 2, 3, 4, 5]
-   * insert(2, 10);
-   * []
-   */
-
   insert(index, value) {
     if (this.length >= this.capacity) {
       this._resize((this.length + 1) * MyArray.SIZE_RATIO);
