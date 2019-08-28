@@ -18,6 +18,24 @@ class myArray {
     this.length++;
   }
 
+  get(index) {
+    if (index < this.ptr || index > this.ptr + this.length) {
+      throw new Error('Invalid index');
+    }
+    return memory.get(this.ptr + index);
+  }
+
+  pop() {
+    if (this.length  == 0){
+      throw new Error('Invalid index');
+    }
+    let val = memory.get(this.ptr+this.length-1);
+    this.length--;
+
+    return val;
+
+  }
+
   _resize(capacity) {
     const oldPtr = this.ptr;
     this.ptr = memory.allocate(capacity);
